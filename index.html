@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sona Mansuryan — AI & ML Researcher</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #fdf8f2;
+    --surface: #fff9f3;
+    --surface2: #f5ede0;
+    --border: rgba(160,100,40,0.1);
+    --border2: rgba(160,100,40,0.2);
+    --text: #2c1a0e;
+    --muted: #8a6a50;
+    --accent: #c0570a;
+    --accent2: #e07b2a;
+    --accent3: #7a3b10;
+    --glow: rgba(192,87,10,0.08);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 4rem;
+    border-bottom: 1px solid var(--border);
+    background: rgba(253,248,242,0.9);
+    backdrop-filter: blur(16px);
+  }
+
+  .nav-logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 4rem 6rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg { position: absolute; inset: 0; z-index: 0; }
+
+  .hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.25;
+  }
+
+  .hero-orb-1 {
+    width: 500px; height: 500px;
+    background: #e87c20;
+    top: -100px; right: -100px;
+    animation: float1 12s ease-in-out infinite;
+  }
+
+  .hero-orb-2 {
+    width: 350px; height: 350px;
+    background: #f0c060;
+    bottom: 0; left: 10%;
+    animation: float2 15s ease-in-out infinite;
+  }
+
+  @keyframes float1 {
+    0%, 100% { transform: translate(0,0) scale(1); }
+    50% { transform: translate(-30px, 30px) scale(1.05); }
+  }
+  @keyframes float2 {
+    0%, 100% { transform: translate(0,0) scale(1); }
+    50% { transform: translate(20px, -20px) scale(1.08); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 780px;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 20px; height: 1px;
+    background: var(--accent);
+    opacity: 0.6;
+  }
+
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-desc {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 520px;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s forwards;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.75rem 1.75rem;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .btn-primary:hover {
+    background: #a34508;
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border2);
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeIn 1s 1.5s forwards;
+  }
+
+  .scroll-indicator span {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.2); }
+  }
+
+  section {
+    padding: 6rem 4rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    max-width: 60px;
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    letter-spacing: -0.02em;
+    margin-bottom: 3.5rem;
+    line-height: 1.1;
+  }
+
+  #about {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    color: #aaa;
+    margin-bottom: 1.25rem;
+    font-size: 1rem;
+    line-height: 1.85;
+  }
+
+  .about-text p strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 2rem;
+  }
+
+  .skill-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    padding: 5px 12px;
+    border: 1px solid var(--border2);
+    border-radius: 2px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    transition: all 0.2s;
+  }
+
+  .skill-tag:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .stat-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--accent), transparent);
+  }
+
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.5rem;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* ---- PROJECTS ---- */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+    text-decoration: none;
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--glow);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .project-card:hover {
+    border-color: rgba(192,87,10,0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(192,87,10,0.08);
+  }
+
+  .project-card:hover::before { opacity: 1; }
+
+  .project-type {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--accent2);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .project-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.25;
+  }
+
+  .project-desc {
+    font-size: 0.875rem;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    flex: 1;
+  }
+
+  .project-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    margin-top: auto;
+  }
+
+  .project-lang {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .lang-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+  }
+
+  .lang-python { background: #3572a5; }
+  .lang-jupyter { background: #da5b0b; }
+  .lang-other { background: #555; }
+
+  .project-arrow {
+    color: var(--accent);
+    font-size: 18px;
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: all 0.2s;
+  }
+
+  .project-card:hover .project-arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Featured spans full width */
+  .project-card.featured {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    padding: 3rem;
+    flex-direction: unset;
+  }
+
+  .project-card.featured .project-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-card.featured .project-title {
+    font-size: 1.75rem;
+  }
+
+  .project-card.featured .project-desc {
+    font-size: 0.95rem;
+    flex: unset;
+  }
+
+  .featured-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 180px;
+    background: var(--surface2);
+    border-radius: 6px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ---- CONTACT ---- */
+  #contact {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+
+  #contact .section-label { justify-content: center; }
+  #contact .section-label::after { display: none; }
+
+  .contact-subtitle {
+    color: var(--muted);
+    max-width: 480px;
+    margin: 0 auto 3rem;
+    font-size: 1rem;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    position: relative;
+    z-index: 1;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s, transform 0.6s;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 1024px) {
+    .projects-grid { grid-template-columns: repeat(2, 1fr); }
+    .project-card.featured {
+      grid-column: 1 / -1;
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 1.25rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { padding: 7rem 1.5rem 5rem; }
+    section { padding: 4rem 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card.featured { grid-column: auto; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; padding: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">SM_portfolio</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-tag">AI &amp; Machine Learning Researcher</div>
+    <h1 class="hero-name">
+      Sona<br><em>Mansuryan</em>
+    </h1>
+    <p class="hero-desc">
+      Exploring the frontiers of generative AI, reinforcement learning, and natural language processing — building intelligent systems that learn and create.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View Projects →</a>
+      <a href="https://github.com/sonamansuryan" target="_blank" class="btn btn-ghost">GitHub Profile</a>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-label">About</div>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <h2 class="section-title">Passionate about<br><em style="font-family:'DM Serif Display',serif; color:var(--accent); font-style:italic;">intelligent systems</em></h2>
+      <p>I'm a researcher and developer focused on the intersection of <strong>machine learning theory</strong> and practical applications. My work spans generative models, reinforcement learning, and NLP — fields where algorithms begin to exhibit truly fascinating emergent behavior.</p>
+      <p>From building <strong>fake news detection systems</strong> to training <strong>CycleGANs</strong> that transform photographs into Van Gogh paintings, I pursue projects that push my understanding of what neural networks can accomplish.</p>
+      <p>Currently deepening my expertise in <strong>generative AI</strong> and exploring how large language models reshape our interaction with software — including Armenian-language voice AI.</p>
+      <div class="skills-grid">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">PyTorch</span>
+        <span class="skill-tag">TensorFlow</span>
+        <span class="skill-tag">Reinforcement Learning</span>
+        <span class="skill-tag">Generative AI</span>
+        <span class="skill-tag">NLP</span>
+        <span class="skill-tag">GANs</span>
+        <span class="skill-tag">Computer Vision</span>
+        <span class="skill-tag">Voice AI</span>
+      </div>
+    </div>
+    <div class="stats-grid reveal" style="transition-delay:0.15s">
+      <div class="stat-card">
+        <div class="stat-num">6+</div>
+        <div class="stat-label">Public Repositories</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">4</div>
+        <div class="stat-label">Core ML Domains</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Curiosity for AI</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">1</div>
+        <div class="stat-label">Pull Shark Badge</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-label">Projects</div>
+  <h2 class="section-title">Selected Work</h2>
+
+  <div class="projects-grid">
+
+    <!-- Featured: CycleGAN -->
+    <a href="https://github.com/sonamansuryan/CycleGAN-Photo2VanGogh" target="_blank" class="project-card featured reveal">
+      <div class="project-content">
+        <div class="project-type">Generative AI · Featured</div>
+        <h3 class="project-title">CycleGAN Photo → Van Gogh</h3>
+        <p class="project-desc">An implementation of CycleGAN for unpaired image-to-image translation — transforming ordinary photographs into Van Gogh-style paintings. Explores the power of adversarial training without requiring matched image pairs.</p>
+        <div class="project-footer">
+          <div class="project-lang">
+            <span class="lang-dot lang-python"></span>
+            Python
+          </div>
+          <span class="project-arrow">→</span>
+        </div>
+      </div>
+      <div class="featured-visual">
+        <svg width="200" height="140" viewBox="0 0 200 140" fill="none">
+          <rect x="10" y="20" width="75" height="100" rx="4" fill="#1a1a2e" stroke="#333" stroke-width="1"/>
+          <rect x="115" y="20" width="75" height="100" rx="4" fill="#1a1525" stroke="#4a3060" stroke-width="1"/>
+          <path d="M20 60 Q35 45 50 60 Q65 75 75 55" stroke="#4ab8b0" stroke-width="2" fill="none" opacity="0.7"/>
+          <path d="M20 80 Q40 65 60 80 Q70 88 75 75" stroke="#4ab8b0" stroke-width="1.5" fill="none" opacity="0.5"/>
+          <circle cx="47" cy="40" r="12" fill="#2a2a3e" stroke="#444" stroke-width="1"/>
+          <path d="M125 40 Q135 30 145 40 Q152 48 158 35 Q165 22 175 30" stroke="#b8a9ff" stroke-width="2" fill="none" opacity="0.8"/>
+          <path d="M120 65 Q130 58 140 68 Q152 80 165 60 Q172 48 180 58" stroke="#f0a875" stroke-width="2" fill="none" opacity="0.7"/>
+          <path d="M118 90 Q132 78 148 92 Q162 105 178 88" stroke="#b8a9ff" stroke-width="1.5" fill="none" opacity="0.6"/>
+          <path d="M90 30 L110 70" stroke="#666" stroke-width="1" marker-end="url(#arr)"/>
+          <path d="M110 70 L90 110" stroke="#666" stroke-width="1" marker-end="url(#arr)"/>
+          <text x="100" y="68" fill="#888" font-size="9" text-anchor="middle" font-family="monospace">GAN</text>
+          <defs>
+            <marker id="arr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6 Z" fill="#666"/>
+            </marker>
+          </defs>
+        </svg>
+      </div>
+    </a>
+
+    <!-- Fake News Detection -->
+    <a href="https://github.com/sonamansuryan/FakeNewsDetectionSystems" target="_blank" class="project-card reveal">
+      <div class="project-type">NLP · Classification</div>
+      <h3 class="project-title">Fake News Detection Systems</h3>
+      <p class="project-desc">ML-powered system for detecting misinformation — combining NLP techniques and classification models to distinguish fake news from reliable sources at scale.</p>
+      <div class="project-footer">
+        <div class="project-lang">
+          <span class="lang-dot lang-python"></span>
+          Python
+        </div>
+        <span class="project-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- Plant Disease Classifier -->
+    <a href="https://github.com/sonamansuryan/plant-disease-classifier" target="_blank" class="project-card reveal" style="transition-delay:0.05s">
+      <div class="project-type">Computer Vision</div>
+      <h3 class="project-title">Plant Disease Classifier</h3>
+      <p class="project-desc">Deep learning model for identifying plant diseases from leaf images — applying convolutional neural networks to precision agriculture and crop health monitoring.</p>
+      <div class="project-footer">
+        <div class="project-lang">
+          <span class="lang-dot lang-python"></span>
+          Python
+        </div>
+        <span class="project-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- Text to Image -->
+    <a href="https://github.com/sonamansuryan/text-to-image-engine" target="_blank" class="project-card reveal" style="transition-delay:0.1s">
+      <div class="project-type">Generative AI</div>
+      <h3 class="project-title">Text-to-Image Engine</h3>
+      <p class="project-desc">A text-to-image generation engine exploring diffusion models and generative architectures — turning natural language prompts into visual outputs.</p>
+      <div class="project-footer">
+        <div class="project-lang">
+          <span class="lang-dot lang-python"></span>
+          Python
+        </div>
+        <span class="project-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- Armenian Voice AI -->
+    <a href="https://github.com/sonamansuryan/armenian-voice-ai-support-agent" target="_blank" class="project-card reveal" style="transition-delay:0.05s">
+      <div class="project-type">Voice AI · NLP</div>
+      <h3 class="project-title">Armenian Voice AI Support Agent</h3>
+      <p class="project-desc">An AI-powered customer support agent with Armenian language voice capabilities — bridging speech recognition, NLP, and conversational AI for the Armenian language.</p>
+      <div class="project-footer">
+        <div class="project-lang">
+          <span class="lang-dot lang-other"></span>
+          Python / NLP
+        </div>
+        <span class="project-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- Reinforcement Learning -->
+    <a href="https://github.com/sonamansuryan/Reinforcement-Learning" target="_blank" class="project-card reveal" style="transition-delay:0.1s">
+      <div class="project-type">Reinforcement Learning</div>
+      <h3 class="project-title">Reinforcement Learning Experiments</h3>
+      <p class="project-desc">A collection of RL algorithms and environments implemented from scratch — exploring policy gradients, Q-learning, and agent-environment interaction in Jupyter Notebooks.</p>
+      <div class="project-footer">
+        <div class="project-lang">
+          <span class="lang-dot lang-jupyter"></span>
+          Jupyter Notebook
+        </div>
+        <span class="project-arrow">→</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-label">Contact</div>
+  <h2 class="section-title reveal" style="font-family:'DM Serif Display',serif; font-size:clamp(2rem,4vw,3rem); letter-spacing:-0.02em; margin-bottom:1rem;">Let's connect</h2>
+  <p class="contact-subtitle reveal">Interested in collaboration, research opportunities, or just want to talk about AI and ML? I'd love to hear from you.</p>
+  <div class="contact-links reveal">
+    <a href="https://github.com/sonamansuryan" target="_blank" class="btn btn-primary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+      GitHub
+    </a>
+    <a href="mansuruansona04@gmail.com" class="btn btn-ghost">Email Me</a>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Sona Mansuryan</span>
+  <span>Built with care · Hosted on GitHub Pages</span>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
