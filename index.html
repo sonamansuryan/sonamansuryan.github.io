@@ -117,35 +117,6 @@
     bottom: 50px; left: 5%;
     animation: float2 15s ease-in-out infinite;
   }
- .hero-image-container {
-    position: absolute;
-    right: 5%;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 400px;
-    height: 400px;
-    z-index: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .hero-profile-img {
-    width: 320px;
-    height: 320px;
-    object-fit: cover;
-    border-radius: 50%; /* Կլորացնում է նկարը */
-    border: 2px solid var(--accent);
-    padding: 10px;
-    background: var(--surface);
-    box-shadow: 0 0 30px var(--glow);
-    animation: morph 8s ease-in-out infinite; /* Ավելացնում է շարժում */
-  }
-
-  @keyframes morph {
-    0%, 100% { border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%; }
-    50% { border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%; }
-  }
 
   @keyframes float1 {
     0%, 100% { transform: translate(0,0) scale(1); }
@@ -157,57 +128,103 @@
   }
 
   /* Grid layout for text and image */
-/* 1. Հիմնական կոնտեյները */
   .hero-container {
     position: relative;
     z-index: 1;
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Հավասար բաժանում */
-    gap: 2rem;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 4rem;
     align-items: center;
     width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 1100px;
   }
 
-  /* 2. Նկարի կոնտեյները */
-  .hero-image-box {
+  .hero-content {
+    max-width: 600px;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent3);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 20px; height: 1px;
+    background: var(--accent3);
+    opacity: 0.6;
+  }
+
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 6vw, 5rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+    color: var(--text);
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-desc {
+    font-size: 1.1rem;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s forwards;
+  }
+
+  /* IMAGE STYLING */
+  .hero-image-wrapper {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
+    opacity: 0;
+    animation: fadeIn 1.2s 1s forwards;
   }
 
-  .hero-profile-img {
+  .hero-image {
     width: 100%;
-    max-width: 420px; /* Նկարի առավելագույն չափը */
-    aspect-ratio: 1 / 1;
+    max-width: 380px;
+    aspect-ratio: 4/5;
     object-fit: cover;
-    border: 8px solid var(--surface);
+    /* Organic Blob Shape */
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    box-shadow: 0 20px 50px var(--glow);
+    border: 6px solid var(--surface);
     outline: 2px solid var(--accent);
     outline-offset: 4px;
-    box-shadow: 0 20px 50px var(--glow);
-    /* Գեղեցիկ «լողացող» ձևը */
-    animation: morphing 10s ease-in-out infinite;
-    z-index: 5;
+    animation: morph 8s ease-in-out infinite;
   }
 
-  @keyframes morphing {
-    0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-    50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
-  }
-
-  .hero-image-box::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    max-width: 500px;
-    max-height: 500px;
-    border: 1px solid var(--accent);
-    opacity: 0.3;
-    animation: morphing 8s ease-in-out infinite reverse;
-    z-index: 1;
+  @keyframes morph {
+    0%, 100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+    34% { border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; }
+    67% { border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%; }
   }
 
   .btn {
@@ -643,7 +660,6 @@
   </div>
   
   <div class="hero-container">
-    <!-- Ձախ կողմը՝ Տեքստ -->
     <div class="hero-content">
       <div class="hero-tag">AI &amp; Machine Learning Researcher</div>
       <h1 class="hero-name">
@@ -658,10 +674,12 @@
       </div>
     </div>
     
-    <!-- Աջ կողմը՝ Նկար -->
-    <div class="hero-image-box reveal">
-      <img src="sonamans.png" alt="Sona Mansuryan" class="hero-profile-img">
+    <!-- ԱՀԱ ՔՈ ՆԿԱՐԻ ՀԱՏՎԱԾԸ -->
+    <div class="hero-image-wrapper">
+      <img src="sonamans.png" alt="Sona Mansuryan" class="hero-image">
     </div>
+    <!-- ========================== -->
+
   </div>
 
   <div class="scroll-indicator">
@@ -669,7 +687,7 @@
     <div class="scroll-line"></div>
   </div>
 </section>
- 
+
 <section id="about">
   <div class="section-label">About</div>
   <div class="about-grid">
