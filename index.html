@@ -404,14 +404,14 @@
   .projects-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+    gap: 1.5rem; /* Փոքրացված տարածություն քարտերի միջև */
   }
 
   .project-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 2rem;
+    border-radius: 12px; /* Փոքրացված շրջանակի կլորություն */
+    padding: 1.5rem; /* Կոմպակտ ներքին տարածություն */
     text-decoration: none;
     color: var(--text);
     display: flex;
@@ -447,7 +447,7 @@
     font-size: 0.95rem;
     color: var(--muted);
     line-height: 1.7;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     flex: 1;
   }
 
@@ -495,22 +495,37 @@
   .project-card.featured {
     grid-column: 1 / -1;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    grid-template-columns: 1.15fr 0.85fr; /* Բաշխում ձախ և աջ մասերի */
+    gap: 3rem;
     align-items: center;
-    padding: 3rem;
+    padding: 2.5rem; /* Կոմպակտ ներքին տարածություն */
     flex-direction: unset;
     background: linear-gradient(145deg, var(--surface), var(--surface2));
+    text-align: left; /* Տեքստի հավասարեցում ձախ */
   }
 
   .project-card.featured .project-content {
     display: flex;
     flex-direction: column;
     height: 100%;
+    justify-content: center;
   }
 
   .project-card.featured .project-title { font-size: 2rem; }
-  .project-card.featured .project-desc { flex: unset; font-size: 1.05rem; }
+  
+  .project-card.featured .project-desc { 
+    flex: unset; 
+    font-size: 1.05rem; 
+    border-bottom: 1px solid rgba(220, 165, 40, 0.15); /* Սահմանազատող թեթև գիծ */
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .project-card.featured .project-footer {
+    border-top: none;
+    margin-top: 0;
+    padding-top: 0;
+  }
 
   .featured-visual {
     display: flex;
@@ -519,7 +534,7 @@
     height: 100%;
     min-height: 250px;
     background: var(--bg);
-    border-radius: 12px;
+    border-radius: 8px; /* Փոքրացված կլորություն */
     border: 1px solid var(--border);
     position: relative;
     overflow: hidden;
@@ -716,6 +731,7 @@
 
   <div class="projects-grid">
 
+    <!-- 1. Armenian Voice AI Support Agent (Մնում է առաջինը և գլխավորը) -->
     <a href="https://github.com/sonamansuryan/armenian-voice-ai-support-agent" target="_blank" class="project-card featured reveal">
       <div class="project-content">
         <div class="project-type">Voice AI · NLP · Featured</div>
@@ -752,6 +768,7 @@
       </div>
     </a>
 
+    <!-- 2. CycleGAN Photo → Van Gogh -->
     <a href="https://github.com/sonamansuryan/CycleGAN-Photo2VanGogh" target="_blank" class="project-card reveal">
       <div class="project-type">Generative AI</div>
       <h3 class="project-title">CycleGAN Photo → Van Gogh</h3>
@@ -765,6 +782,7 @@
       </div>
     </a>
 
+    <!-- 3. NEAT Chrome Dino Game -->
     <a href="https://github.com/sonamansuryan/neat-dino" target="_blank" class="project-card reveal" style="transition-delay:0.05s">
       <div class="project-type">Neuroevolution · AI</div>
       <h3 class="project-title">NEAT Chrome Dino Game</h3>
@@ -778,6 +796,7 @@
       </div>
     </a>
 
+    <!-- 4. Reinforcement Learning -->
     <a href="https://github.com/sonamansuryan/Reinforcement-Learning" target="_blank" class="project-card reveal" style="transition-delay:0.1s">
       <div class="project-type">Reinforcement Learning</div>
       <h3 class="project-title">Reinforcement Learning</h3>
@@ -791,6 +810,7 @@
       </div>
     </a>
 
+    <!-- 5. Fake News Detection Systems -->
     <a href="https://github.com/sonamansuryan/FakeNewsDetectionSystems" target="_blank" class="project-card reveal">
       <div class="project-type">NLP · Classification</div>
       <h3 class="project-title">Fake News Detection Systems</h3>
@@ -804,6 +824,7 @@
       </div>
     </a>
 
+    <!-- 6. Plant Disease Classifier -->
     <a href="https://github.com/sonamansuryan/plant-disease-classifier" target="_blank" class="project-card reveal" style="transition-delay:0.05s">
       <div class="project-type">Computer Vision</div>
       <h3 class="project-title">Plant Disease Classifier</h3>
@@ -817,6 +838,7 @@
       </div>
     </a>
 
+    <!-- 7. Text-to-Image Engine -->
     <a href="https://github.com/sonamansuryan/text-to-image-engine" target="_blank" class="project-card reveal" style="transition-delay:0.1s">
       <div class="project-type">Generative AI</div>
       <h3 class="project-title">Text-to-Image Engine</h3>
