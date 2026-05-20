@@ -33,7 +33,6 @@
     overflow-x: hidden;
   }
 
-  /* Ֆոնի թեթև աղմուկ/տեքստուրա */
   body::before {
     content: '';
     position: fixed;
@@ -178,12 +177,11 @@
     animation: fadeUp 0.8s 0.8s forwards;
   }
 
-  /* IMAGE STYLING */
   .hero-image-wrapper {
     position: relative;
     display: flex;
     justify-content: center;
-    align-items: flex-end; /* Align image to bottom */
+    align-items: flex-end;
     opacity: 0;
     animation: fadeIn 1.2s 1s forwards;
   }
@@ -273,11 +271,18 @@
     50% { opacity: 1; transform: scaleY(1.2); }
   }
 
-  /* ---- SECTIONS ---- */
+  /* ---- SECTIONS (Գլոբալ կարգավորումներ միասնական դիրքավորման համար) ---- */
   section {
     padding: 6rem 4rem;
     position: relative;
     z-index: 1;
+  }
+
+  /* Այս կոնտեյներն է ապահովում միևնույն ձախակողմյան ուղղությունը */
+  .section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
   }
 
   .section-label {
@@ -319,8 +324,6 @@
     grid-template-columns: 1.1fr 0.9fr;
     gap: 6rem;
     align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
   }
 
   .about-text p {
@@ -396,22 +399,17 @@
   }
 
   /* ---- PROJECTS ---- */
-  #projects {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
   .projects-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem; /* Փոքրացված տարածություն քարտերի միջև */
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem; 
   }
 
   .project-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 12px; /* Փոքրացված շրջանակի կլորություն */
-    padding: 1.5rem; /* Կոմպակտ ներքին տարածություն */
+    border-radius: 12px;
+    padding: 1.8rem; 
     text-decoration: none;
     color: var(--text);
     display: flex;
@@ -425,6 +423,7 @@
     border-color: var(--accent);
     transform: translateY(-5px);
     box-shadow: 0 15px 35px var(--glow);
+    background: linear-gradient(145deg, var(--surface), var(--surface2));
   }
 
   .project-type {
@@ -433,13 +432,37 @@
     color: var(--accent3);
     letter-spacing: 0.15em;
     text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+
+  .project-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
     margin-bottom: 1rem;
+  }
+
+  .project-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: var(--glow);
+    color: var(--accent3);
+    flex-shrink: 0;
+  }
+
+  .project-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke-width: 2;
   }
 
   .project-title {
     font-family: 'DM Serif Display', serif;
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
+    font-size: 1.35rem;
     line-height: 1.25;
   }
 
@@ -491,55 +514,6 @@
     transform: translateX(0);
   }
 
-  /* Featured spans full width */
-  .project-card.featured {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: 1.15fr 0.85fr; /* Բաշխում ձախ և աջ մասերի */
-    gap: 3rem;
-    align-items: center;
-    padding: 2.5rem; /* Կոմպակտ ներքին տարածություն */
-    flex-direction: unset;
-    background: linear-gradient(145deg, var(--surface), var(--surface2));
-    text-align: left; /* Տեքստի հավասարեցում ձախ */
-  }
-
-  .project-card.featured .project-content {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: center;
-  }
-
-  .project-card.featured .project-title { font-size: 2rem; }
-  
-  .project-card.featured .project-desc { 
-    flex: unset; 
-    font-size: 1.05rem; 
-    border-bottom: 1px solid rgba(220, 165, 40, 0.15); /* Սահմանազատող թեթև գիծ */
-    padding-bottom: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .project-card.featured .project-footer {
-    border-top: none;
-    margin-top: 0;
-    padding-top: 0;
-  }
-
-  .featured-visual {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    min-height: 250px;
-    background: var(--bg);
-    border-radius: 8px; /* Փոքրացված կլորություն */
-    border: 1px solid var(--border);
-    position: relative;
-    overflow: hidden;
-  }
-
   /* ---- CONTACT ---- */
   #contact {
     background: var(--surface2);
@@ -583,7 +557,6 @@
     from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
   }
-
   @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -607,19 +580,12 @@
   }
 
   @media (max-width: 850px) {
-    .hero-container {
-      grid-template-columns: 1fr;
-      text-align: center;
-    }
+    .hero-container { grid-template-columns: 1fr; text-align: center; }
     .hero-content { margin: 0 auto; }
     .hero-tag { justify-content: center; }
     .hero-tag::before { display: none; }
     .hero-cta { justify-content: center; }
-    
-    .hero-image-wrapper {
-        grid-row: 1; 
-        margin-bottom: 1rem;
-    }
+    .hero-image-wrapper { grid-row: 1; margin-bottom: 1rem; }
     .hero-image { max-width: 400px; transform: scale(1); margin-top: 1rem; }
   }
 
@@ -630,7 +596,6 @@
     section { padding: 4rem 1.5rem; }
     .about-grid { grid-template-columns: 1fr; gap: 3rem; }
     .projects-grid { grid-template-columns: 1fr; }
-    .project-card.featured { grid-column: auto; grid-template-columns: 1fr; gap: 2rem; padding: 2rem; }
     footer { flex-direction: column; gap: 1rem; text-align: center; padding: 1.5rem; }
   }
 </style>
@@ -670,7 +635,6 @@
     <div class="hero-image-wrapper">
       <img src="sonamans.png" alt="Sona Mansuryan" class="hero-image">
     </div>
-
   </div>
 
   <div class="scroll-indicator">
@@ -680,63 +644,75 @@
 </section>
 
 <section id="about">
-  <div class="section-label">About</div>
-  <div class="about-grid">
-    <div class="about-text reveal">
-      <h2 class="section-title">Passionate about<br><em style="font-family:'DM Serif Display',serif; color:var(--accent3); font-style:italic;">intelligent systems</em></h2>
-      
-      <p>I'm a researcher and developer focused on the intersection of <strong>machine learning theory</strong> and practical applications. My work spans generative models, reinforcement learning, and NLP fields where algorithms begin to exhibit truly fascinating emergent behavior.</p>
-      
-      <p>From implementing classic <strong>algorithm theory</strong> to training <strong>CycleGANs</strong> that transform photographs into Van Gogh paintings, I pursue projects that push my understanding of what neural networks can accomplish.</p>
-      
-      <p>Currently deepening my expertise in <strong>generative AI</strong> and exploring how large language models reshape our interaction with software.</p>
-      
-      <div class="skills-grid">
-        <span class="skill-tag">Python</span>
-        <span class="skill-tag">PyTorch</span>
-        <span class="skill-tag">TensorFlow</span>
-        <span class="skill-tag">Reinforcement Learning</span>
-        <span class="skill-tag">Generative AI</span>
-        <span class="skill-tag">NLP</span>
-        <span class="skill-tag">GANs</span>
-        <span class="skill-tag">Jupyter</span>
-        <span class="skill-tag">Algorithm Design</span>
+  <div class="section-container">
+    <div class="section-label">About</div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <h2 class="section-title">Passionate about<br><em style="font-family:'DM Serif Display',serif; color:var(--accent3); font-style:italic;">intelligent systems</em></h2>
+        
+        <p>I'm a researcher and developer focused on the intersection of <strong>machine learning theory</strong> and practical applications. My work spans generative models, reinforcement learning, and NLP fields where algorithms begin to exhibit truly fascinating emergent behavior.</p>
+        
+        <p>From implementing classic <strong>algorithm theory</strong> to training <strong>CycleGANs</strong> that transform photographs into Van Gogh paintings, I pursue projects that push my understanding of what neural networks can accomplish.</p>
+        
+        <p>Currently deepening my expertise in <strong>generative AI</strong> and exploring how large language models reshape our interaction with software.</p>
+        
+        <div class="skills-grid">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">PyTorch</span>
+          <span class="skill-tag">TensorFlow</span>
+          <span class="skill-tag">Reinforcement Learning</span>
+          <span class="skill-tag">Generative AI</span>
+          <span class="skill-tag">NLP</span>
+          <span class="skill-tag">GANs</span>
+          <span class="skill-tag">Jupyter</span>
+          <span class="skill-tag">Algorithm Design</span>
+        </div>
       </div>
-    </div>
-    
-    <div class="stats-grid reveal" style="transition-delay:0.15s">
-      <div class="stat-card">
-        <div class="stat-num">6+</div>
-        <div class="stat-label">Public Repositories</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">4</div>
-        <div class="stat-label">Core ML Domains</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">∞</div>
-        <div class="stat-label">Curiosity for AI</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">1</div>
-        <div class="stat-label">Pull Shark Badge</div>
+      
+      <div class="stats-grid reveal" style="transition-delay:0.15s">
+        <div class="stat-card">
+          <div class="stat-num">6+</div>
+          <div class="stat-label">Public Repositories</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">4</div>
+          <div class="stat-label">Core ML Domains</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">Curiosity for AI</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">1</div>
+          <div class="stat-label">Pull Shark Badge</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <section id="projects">
-  <div class="section-label">Projects</div>
-  <h2 class="section-title">Selected Work</h2>
+  <div class="section-container">
+    <div class="section-label">Projects</div>
+    <h2 class="section-title">Selected Work</h2>
 
-  <div class="projects-grid">
+    <div class="projects-grid">
 
-    <!-- 1. Armenian Voice AI Support Agent (Մնում է առաջինը և գլխավորը) -->
-    <a href="https://github.com/sonamansuryan/armenian-voice-ai-support-agent" target="_blank" class="project-card featured reveal">
-      <div class="project-content">
-        <div class="project-type">Voice AI · NLP · Featured</div>
-        <h3 class="project-title">Armenian Voice AI Support Agent</h3>
-        <p class="project-desc">An AI-powered customer support agent with Armenian language voice capabilities — bridging speech recognition, NLP, and conversational AI for the Armenian language.</p>
+      <!-- 1. Armenian Voice AI Support Agent -->
+      <a href="https://github.com/sonamansuryan/armenian-voice-ai-support-agent" target="_blank" class="project-card reveal">
+        <div class="project-type">Voice AI · NLP</div>
+        <div class="project-header">
+          <div class="project-icon">
+            <!-- Խոսափողի (Microphone) իկոնա -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+              <line x1="12" x2="12" y1="19" y2="22"/>
+            </svg>
+          </div>
+          <h3 class="project-title">Voice AI Support</h3>
+        </div>
+        <p class="project-desc">An AI-powered customer support agent with Armenian language voice capabilities — bridging speech recognition and NLP.</p>
         <div class="project-footer">
           <div class="project-lang">
             <span class="lang-dot lang-other"></span>
@@ -744,127 +720,171 @@
           </div>
           <span class="project-arrow">→</span>
         </div>
-      </div>
-      
-      <div class="featured-visual">
-        <svg width="200" height="140" viewBox="0 0 200 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="40" y="55" width="4" height="30" rx="2" fill="#DDA22A" opacity="0.6" />
-          <rect x="52" y="40" width="4" height="60" rx="2" fill="#B3801B" />
-          <rect x="64" y="25" width="4" height="90" rx="2" fill="#DDA22A" />
-          <rect x="76" y="45" width="4" height="50" rx="2" fill="#B3801B" />
-          <rect x="88" y="15" width="4" height="110" rx="2" fill="#DDA22A" />
-          <rect x="100" y="35" width="4" height="70" rx="2" fill="#B3801B" />
-          <rect x="112" y="10" width="4" height="120" rx="2" fill="#DDA22A" />
-          <rect x="124" y="45" width="4" height="50" rx="2" fill="#B3801B" />
-          <rect x="136" y="25" width="4" height="90" rx="2" fill="#DDA22A" />
-          <rect x="148" y="50" width="4" height="40" rx="2" fill="#B3801B" />
-          <rect x="160" y="60" width="4" height="20" rx="2" fill="#DDA22A" opacity="0.6" />
-          
-          <circle cx="20" cy="70" r="4" fill="#B3801B" opacity="0.5" />
-          <line x1="24" y1="70" x2="36" y2="70" stroke="#8A7B6E" stroke-dasharray="2 2" opacity="0.5" />
-          <circle cx="180" cy="70" r="4" fill="#DDA22A" opacity="0.5" />
-          <line x1="164" y1="70" x2="176" y2="70" stroke="#8A7B6E" stroke-dasharray="2 2" opacity="0.5" />
-        </svg>
-      </div>
-    </a>
+      </a>
 
-    <!-- 2. CycleGAN Photo → Van Gogh -->
-    <a href="https://github.com/sonamansuryan/CycleGAN-Photo2VanGogh" target="_blank" class="project-card reveal">
-      <div class="project-type">Generative AI</div>
-      <h3 class="project-title">CycleGAN Photo → Van Gogh</h3>
-      <p class="project-desc">An implementation of CycleGAN for unpaired image-to-image translation — transforming ordinary photographs into Van Gogh-style paintings.</p>
-      <div class="project-footer">
-        <div class="project-lang">
-          <span class="lang-dot lang-python"></span>
-          Python
+      <!-- 2. CycleGAN Photo → Van Gogh -->
+      <a href="https://github.com/sonamansuryan/CycleGAN-Photo2VanGogh" target="_blank" class="project-card reveal" style="transition-delay:0.05s">
+        <div class="project-type">Generative AI</div>
+        <div class="project-header">
+          <div class="project-icon">
+            <!-- Ներկապնակի (Art Palette) իկոնա -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/>
+              <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/>
+              <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/>
+              <circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/>
+              <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.992 6.012 17.5 2 12 2z"/>
+            </svg>
+          </div>
+          <h3 class="project-title">CycleGAN Art</h3>
         </div>
-        <span class="project-arrow">→</span>
-      </div>
-    </a>
-
-    <!-- 3. NEAT Chrome Dino Game -->
-    <a href="https://github.com/sonamansuryan/neat-dino" target="_blank" class="project-card reveal" style="transition-delay:0.05s">
-      <div class="project-type">Neuroevolution · AI</div>
-      <h3 class="project-title">NEAT Chrome Dino Game</h3>
-      <p class="project-desc">Training an AI agent to master the classic Chrome Dinosaur game using the Neuroevolution of Augmenting Topologies (NEAT) genetic algorithm.</p>
-      <div class="project-footer">
-        <div class="project-lang">
-          <span class="lang-dot lang-python"></span>
-          Python
+        <p class="project-desc">An implementation of CycleGAN for unpaired image-to-image translation — transforming ordinary photos into Van Gogh paintings.</p>
+        <div class="project-footer">
+          <div class="project-lang">
+            <span class="lang-dot lang-python"></span>
+            Python
+          </div>
+          <span class="project-arrow">→</span>
         </div>
-        <span class="project-arrow">→</span>
-      </div>
-    </a>
+      </a>
 
-    <!-- 4. Reinforcement Learning -->
-    <a href="https://github.com/sonamansuryan/Reinforcement-Learning" target="_blank" class="project-card reveal" style="transition-delay:0.1s">
-      <div class="project-type">Reinforcement Learning</div>
-      <h3 class="project-title">Reinforcement Learning</h3>
-      <p class="project-desc">A collection of RL algorithms (Q-Learning, Policy Gradients) and environment experiments implemented from scratch in Jupyter Notebooks.</p>
-      <div class="project-footer">
-        <div class="project-lang">
-          <span class="lang-dot lang-jupyter"></span>
-          Jupyter Notebook
+      <!-- 3. NEAT Chrome Dino Game -->
+      <a href="https://github.com/sonamansuryan/neat-dino" target="_blank" class="project-card reveal" style="transition-delay:0.1s">
+        <div class="project-type">Neuroevolution</div>
+        <div class="project-header">
+          <div class="project-icon">
+            <!-- Խաղային վահանակի (Gamepad) իկոնա -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="6" x2="10" y1="12" y2="12"/><line x1="8" x2="8" y1="10" y2="14"/>
+              <line x1="15" x2="15.01" y1="13" y2="13"/><line x1="18" x2="18.01" y1="11" y2="11"/>
+              <rect width="20" height="12" x="2" y="6" rx="2"/>
+            </svg>
+          </div>
+          <h3 class="project-title">NEAT Dino Game</h3>
         </div>
-        <span class="project-arrow">→</span>
-      </div>
-    </a>
-
-    <!-- 5. Fake News Detection Systems -->
-    <a href="https://github.com/sonamansuryan/FakeNewsDetectionSystems" target="_blank" class="project-card reveal">
-      <div class="project-type">NLP · Classification</div>
-      <h3 class="project-title">Fake News Detection Systems</h3>
-      <p class="project-desc">ML-powered text classification system utilizing advanced NLP techniques to identify misinformation and analyze article credibility at scale.</p>
-      <div class="project-footer">
-        <div class="project-lang">
-          <span class="lang-dot lang-python"></span>
-          Python
+        <p class="project-desc">Training an AI agent to master the classic Chrome Dinosaur game using the NEAT genetic algorithm.</p>
+        <div class="project-footer">
+          <div class="project-lang">
+            <span class="lang-dot lang-python"></span>
+            Python
+          </div>
+          <span class="project-arrow">→</span>
         </div>
-        <span class="project-arrow">→</span>
-      </div>
-    </a>
+      </a>
 
-    <!-- 6. Plant Disease Classifier -->
-    <a href="https://github.com/sonamansuryan/plant-disease-classifier" target="_blank" class="project-card reveal" style="transition-delay:0.05s">
-      <div class="project-type">Computer Vision</div>
-      <h3 class="project-title">Plant Disease Classifier</h3>
-      <p class="project-desc">Deep learning model built with Convolutional Neural Networks (CNNs) to detect and classify crop diseases from leaf imagery for precision agriculture.</p>
-      <div class="project-footer">
-        <div class="project-lang">
-          <span class="lang-dot lang-python"></span>
-          Python
+      <!-- 4. Reinforcement Learning -->
+      <a href="https://github.com/sonamansuryan/Reinforcement-Learning" target="_blank" class="project-card reveal">
+        <div class="project-type">Reinforcement Learning</div>
+        <div class="project-header">
+          <div class="project-icon">
+            <!-- Արհեստական Նեյրոնային Ցանցի (Network) իկոնա -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/>
+              <path d="M6 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/>
+              <path d="M18 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/>
+              <path d="M8.5 10.5 15.5 7.5"/><path d="M8.5 11.5 15.5 16.5"/>
+            </svg>
+          </div>
+          <h3 class="project-title">RL Algorithms</h3>
         </div>
-        <span class="project-arrow">→</span>
-      </div>
-    </a>
-
-    <!-- 7. Text-to-Image Engine -->
-    <a href="https://github.com/sonamansuryan/text-to-image-engine" target="_blank" class="project-card reveal" style="transition-delay:0.1s">
-      <div class="project-type">Generative AI</div>
-      <h3 class="project-title">Text-to-Image Engine</h3>
-      <p class="project-desc">A text-to-image generation engine exploring modern diffusion architectures and models to convert text prompts into detailed visuals.</p>
-      <div class="project-footer">
-        <div class="project-lang">
-          <span class="lang-dot lang-python"></span>
-          Python
+        <p class="project-desc">A collection of RL algorithms (Q-Learning, Policy Gradients) and environments implemented from scratch.</p>
+        <div class="project-footer">
+          <div class="project-lang">
+            <span class="lang-dot lang-jupyter"></span>
+            Jupyter Notebook
+          </div>
+          <span class="project-arrow">→</span>
         </div>
-        <span class="project-arrow">→</span>
-      </div>
-    </a>
+      </a>
 
+      <!-- 5. Fake News Detection Systems -->
+      <a href="https://github.com/sonamansuryan/FakeNewsDetectionSystems" target="_blank" class="project-card reveal" style="transition-delay:0.05s">
+        <div class="project-type">NLP · Classification</div>
+        <div class="project-header">
+          <div class="project-icon">
+            <!-- Պաշտպանիչ վահանի և նորությունների (Shield) իկոնա -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/>
+            </svg>
+          </div>
+          <h3 class="project-title">Fake News Detect</h3>
+        </div>
+        <p class="project-desc">ML-powered text classification system utilizing advanced NLP to identify misinformation and analyze credibility.</p>
+        <div class="project-footer">
+          <div class="project-lang">
+            <span class="lang-dot lang-python"></span>
+            Python
+          </div>
+          <span class="project-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- 6. Plant Disease Classifier -->
+      <a href="https://github.com/sonamansuryan/plant-disease-classifier" target="_blank" class="project-card reveal" style="transition-delay:0.1s">
+        <div class="project-type">Computer Vision</div>
+        <div class="project-header">
+          <div class="project-icon">
+            <!-- ԿԱԿՏՈՒՍԻ (Cactus) իկոնա -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 22V5a2 2 0 0 1 4 0v17" />
+              <path d="M6 13V9a2 2 0 0 1 2-2h2" />
+              <path d="M18 16v-4a2 2 0 0 0-2-2h-2" />
+              <line x1="8" y1="22" x2="16" y2="22" />
+            </svg>
+          </div>
+          <h3 class="project-title">Plant Classifier</h3>
+        </div>
+        <p class="project-desc">Deep learning CNN model designed to detect and classify crop diseases from leaf imagery for precision agriculture.</p>
+        <div class="project-footer">
+          <div class="project-lang">
+            <span class="lang-dot lang-python"></span>
+            Python
+          </div>
+          <span class="project-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- 7. Text-to-Image Engine -->
+      <a href="https://github.com/sonamansuryan/text-to-image-engine" target="_blank" class="project-card reveal">
+        <div class="project-type">Generative AI</div>
+        <div class="project-header">
+          <div class="project-icon">
+            <!-- Կախարդական փայտիկի (Magic Wand/Image) իկոնա -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72Z"/>
+              <path d="m14 7 3 3"/><path d="M5 6v4"/><path d="M19 14v4"/><path d="M10 2v2"/>
+              <path d="M7 8H3"/><path d="M21 16h-4"/><path d="M11 3H9"/>
+            </svg>
+          </div>
+          <h3 class="project-title">Text-to-Image</h3>
+        </div>
+        <p class="project-desc">A generation engine exploring modern diffusion architectures to convert text prompts into detailed visuals.</p>
+        <div class="project-footer">
+          <div class="project-lang">
+            <span class="lang-dot lang-python"></span>
+            Python
+          </div>
+          <span class="project-arrow">→</span>
+        </div>
+      </a>
+
+    </div>
   </div>
 </section>
 
 <section id="contact">
-  <div class="section-label">Contact</div>
-  <h2 class="section-title reveal" style="font-family:'DM Serif Display',serif; font-size:clamp(2rem,4vw,3rem); letter-spacing:-0.02em; margin-bottom:1rem;">Let's connect</h2>
-  <p class="contact-subtitle reveal">Interested in collaboration, research opportunities, or just want to talk about AI and ML? I'd love to hear from you.</p>
-  <div class="contact-links reveal">
-    <a href="https://github.com/sonamansuryan" target="_blank" class="btn btn-primary">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-      GitHub
-    </a>
-    <a href="mailto:mansuryansona04@gmail.com" class="btn btn-ghost">Email Me</a>
+  <div class="section-container">
+    <div class="section-label">Contact</div>
+    <h2 class="section-title reveal" style="font-family:'DM Serif Display',serif; font-size:clamp(2rem,4vw,3rem); letter-spacing:-0.02em; margin-bottom:1rem;">Let's connect</h2>
+    <p class="contact-subtitle reveal">Interested in collaboration, research opportunities, or just want to talk about AI and ML? I'd love to hear from you.</p>
+    <div class="contact-links reveal">
+      <a href="https://github.com/sonamansuryan" target="_blank" class="btn btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <a href="mailto:mansuryansona04@gmail.com" class="btn btn-ghost">Email Me</a>
+    </div>
   </div>
 </section>
 
