@@ -157,42 +157,44 @@
   }
 
   /* Grid layout for text and image */
+/* 1. Հիմնական կոնտեյները */
   .hero-container {
     position: relative;
-    z-index: 5;
+    z-index: 1;
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
+    grid-template-columns: 1fr 1fr; /* Հավասար բաժանում */
     gap: 2rem;
-    align-items: center; 
+    align-items: center;
     width: 100%;
     max-width: 1200px;
-    margin: -40px auto 0; 
+    margin: 0 auto;
   }
 
+  /* 2. Նկարի կոնտեյները */
   .hero-image-box {
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    height: 550px; 
   }
 
   .hero-profile-img {
-    width: 110%; 
-    max-width: 550px;
+    width: 100%;
+    max-width: 420px; /* Նկարի առավելագույն չափը */
     aspect-ratio: 1 / 1;
-    object-fit: contain; 
-    
-    mix-blend-mode: multiply; 
-    filter: contrast(1.05); 
-
-    animation: morphing 8s ease-in-out infinite;
-    z-index: 10;
+    object-fit: cover;
+    border: 8px solid var(--surface);
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+    box-shadow: 0 20px 50px var(--glow);
+    /* Գեղեցիկ «լողացող» ձևը */
+    animation: morphing 10s ease-in-out infinite;
+    z-index: 5;
   }
 
   @keyframes morphing {
-    0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; transform: scale(1); }
-    50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; transform: scale(1.05); }
+    0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+    50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
   }
 
   .hero-image-box::after {
