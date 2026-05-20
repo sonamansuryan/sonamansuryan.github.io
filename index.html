@@ -56,13 +56,29 @@
     backdrop-filter: blur(12px);
   }
 
+  /* ---- ՆՈՐ ԼՈԳՈՅԻ ՈՃԸ ---- */
   .nav-logo {
-    font-family: 'DM Mono', monospace;
-    font-size: 13px;
-    color: var(--accent3);
+    display: flex;
+    align-items: center;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.2rem;
+    color: var(--text);
     font-weight: 500;
-    letter-spacing: 0.1em;
     text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: opacity 0.3s;
+  }
+
+  .nav-logo:hover {
+    opacity: 0.7;
+  }
+
+  .nav-logo span {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    color: var(--accent3);
+    margin-left: 6px;
+    font-size: 1.35rem;
   }
 
   .nav-links {
@@ -271,14 +287,13 @@
     50% { opacity: 1; transform: scaleY(1.2); }
   }
 
-  /* ---- SECTIONS (Գլոբալ կարգավորումներ միասնական դիրքավորման համար) ---- */
+  /* ---- SECTIONS ---- */
   section {
     padding: 6rem 4rem;
     position: relative;
     z-index: 1;
   }
 
-  /* Այս կոնտեյներն է ապահովում միևնույն ձախակողմյան ուղղությունը */
   .section-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -603,7 +618,8 @@
 <body>
 
 <nav>
-  <a href="#" class="nav-logo">SM_portfolio</a>
+  <!-- ՆՈՐ ԼՈԳՈ -->
+  <a href="#" class="nav-logo">Sona<span>Mansuryan</span></a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#projects">Projects</a></li>
@@ -624,7 +640,7 @@
         Sona<br><em>Mansuryan</em>
       </h1>
       <p class="hero-desc">
-        Exploring the frontiers of generative AI, reinforcement learning, and natural language processing — building intelligent systems that learn and create.
+        Exploring the frontiers of generative AI, reinforcement learning, and natural language processing, building intelligent systems that learn and create.
       </p>
       <div class="hero-cta">
         <a href="#projects" class="btn btn-primary">View Projects →</a>
@@ -703,7 +719,6 @@
         <div class="project-type">Voice AI · NLP</div>
         <div class="project-header">
           <div class="project-icon">
-            <!-- Խոսափողի (Microphone) իկոնա -->
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
               <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
@@ -727,7 +742,6 @@
         <div class="project-type">Generative AI</div>
         <div class="project-header">
           <div class="project-icon">
-            <!-- Ներկապնակի (Art Palette) իկոնա -->
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/>
               <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/>
@@ -753,7 +767,6 @@
         <div class="project-type">Neuroevolution</div>
         <div class="project-header">
           <div class="project-icon">
-            <!-- Խաղային վահանակի (Gamepad) իկոնա -->
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
               <line x1="6" x2="10" y1="12" y2="12"/><line x1="8" x2="8" y1="10" y2="14"/>
               <line x1="15" x2="15.01" y1="13" y2="13"/><line x1="18" x2="18.01" y1="11" y2="11"/>
@@ -777,7 +790,6 @@
         <div class="project-type">Reinforcement Learning</div>
         <div class="project-header">
           <div class="project-icon">
-            <!-- Արհեստական Նեյրոնային Ցանցի (Network) իկոնա -->
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
               <path d="M18 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/>
               <path d="M6 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/>
@@ -802,7 +814,6 @@
         <div class="project-type">NLP · Classification</div>
         <div class="project-header">
           <div class="project-icon">
-            <!-- Պաշտպանիչ վահանի և նորությունների (Shield) իկոնա -->
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
               <line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/>
@@ -825,7 +836,6 @@
         <div class="project-type">Computer Vision</div>
         <div class="project-header">
           <div class="project-icon">
-            <!-- ԿԱԿՏՈՒՍԻ (Cactus) իկոնա -->
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
               <path d="M10 22V5a2 2 0 0 1 4 0v17" />
               <path d="M6 13V9a2 2 0 0 1 2-2h2" />
@@ -850,7 +860,6 @@
         <div class="project-type">Generative AI</div>
         <div class="project-header">
           <div class="project-icon">
-            <!-- Կախարդական փայտիկի (Magic Wand/Image) իկոնա -->
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
               <path d="m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72Z"/>
               <path d="m14 7 3 3"/><path d="M5 6v4"/><path d="M19 14v4"/><path d="M10 2v2"/>
