@@ -33,7 +33,7 @@
     overflow-x: hidden;
   }
 
-  /* Ֆոնի թեթև աղմուկ/տեքստուրա */
+  /* Ֆոնի նուրբ աղմուկ */
   body::before {
     content: '';
     position: fixed;
@@ -102,12 +102,8 @@
     filter: blur(90px);
     opacity: 0.4;
   }
-
-  .hero-orb-1 { width: 450px; height: 450px; background: #E8BE5D; top: -50px; right: 10%; animation: float1 12s ease-in-out infinite; }
-  .hero-orb-2 { width: 350px; height: 350px; background: #FDF1D6; bottom: 50px; left: 5%; animation: float2 15s ease-in-out infinite; }
-
-  @keyframes float1 { 0%, 100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-30px, 30px) scale(1.05); } }
-  @keyframes float2 { 0%, 100% { transform: translate(0,0) scale(1); } 50% { transform: translate(20px, -20px) scale(1.08); } }
+  .hero-orb-1 { width: 450px; height: 450px; background: #E8BE5D; top: -50px; right: 10%; }
+  .hero-orb-2 { width: 350px; height: 350px; background: #FDF1D6; bottom: 50px; left: 5%; }
 
   .hero-container {
     position: relative;
@@ -119,7 +115,7 @@
     width: 100%;
     max-width: 1300px;
   }
- 
+
   .hero-content {
     max-width: 600px;
   }
@@ -134,8 +130,6 @@
     letter-spacing: 0.15em;
     text-transform: uppercase;
     margin-bottom: 2rem;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.2s forwards;
   }
 
   .hero-tag::before {
@@ -152,8 +146,6 @@
     letter-spacing: -0.02em;
     margin-bottom: 1.5rem;
     color: var(--text);
-    opacity: 0;
-    animation: fadeUp 0.8s 0.4s forwards;
   }
 
   .hero-name em {
@@ -166,26 +158,15 @@
     color: var(--muted);
     line-height: 1.8;
     margin-bottom: 3rem;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.6s forwards;
   }
 
-  .hero-cta {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.8s forwards;
-  }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
 
-  /* IMAGE STYLING */
   .hero-image-wrapper {
     position: relative;
     display: flex;
     justify-content: center;
-    align-items: flex-end; /* Align image to bottom */
-    opacity: 0;
-    animation: fadeIn 1.2s 1s forwards;
+    align-items: flex-end;
   }
 
   .hero-image {
@@ -212,33 +193,13 @@
     letter-spacing: 0.05em;
     text-decoration: none;
     transition: all 0.3s;
-    cursor: pointer;
     border: none;
   }
 
-  .btn-primary {
-    background: var(--accent);
-    color: #fff;
-    box-shadow: 0 8px 20px var(--glow);
-  }
-
-  .btn-primary:hover {
-    background: var(--accent3);
-    transform: translateY(-2px);
-    box-shadow: 0 12px 25px var(--glow);
-  }
-
-  .btn-ghost {
-    background: transparent;
-    color: var(--text);
-    border: 1px solid var(--border2);
-  }
-
-  .btn-ghost:hover {
-    border-color: var(--accent);
-    color: var(--accent3);
-    background: var(--surface);
-  }
+  .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 8px 20px var(--glow); }
+  .btn-primary:hover { background: var(--accent3); transform: translateY(-2px); box-shadow: 0 12px 25px var(--glow); }
+  .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border2); }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent3); background: var(--surface); }
 
   .scroll-indicator {
     position: absolute;
@@ -249,37 +210,12 @@
     flex-direction: column;
     align-items: center;
     gap: 8px;
-    opacity: 0;
-    animation: fadeIn 1s 1.5s forwards;
   }
+  .scroll-indicator span { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.2em; text-transform: uppercase; }
+  .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--accent), transparent); animation: scrollPulse 2s ease-in-out infinite; }
+  @keyframes scrollPulse { 0%, 100% { opacity: 0.3; transform: scaleY(1); } 50% { opacity: 1; transform: scaleY(1.2); } }
 
-  .scroll-indicator span {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    color: var(--muted);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-  }
-
-  .scroll-line {
-    width: 1px;
-    height: 40px;
-    background: linear-gradient(to bottom, var(--accent), transparent);
-    animation: scrollPulse 2s ease-in-out infinite;
-  }
-
-  @keyframes scrollPulse {
-    0%, 100% { opacity: 0.3; transform: scaleY(1); }
-    50% { opacity: 1; transform: scaleY(1.2); }
-  }
-
-  /* ---- SECTIONS ---- */
-  section {
-    padding: 6rem 4rem;
-    position: relative;
-    z-index: 1;
-  }
-
+  /* ---- COMMON SECTION HEADERS ---- */
   .section-label {
     font-family: 'DM Mono', monospace;
     font-size: 11px;
@@ -294,32 +230,33 @@
 
   .section-label::after {
     content: '';
-    flex: 1;
+    width: 60px;
     height: 1px;
     background: var(--border);
-    max-width: 60px;
   }
 
   .section-title {
     font-family: 'DM Serif Display', serif;
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(2.2rem, 4vw, 3rem);
     letter-spacing: -0.02em;
-    margin-bottom: 3.5rem;
+    margin-bottom: 2.5rem;
     line-height: 1.1;
+    color: var(--text);
   }
 
+  /* ---- ABOUT SECTION (SYMMETRICAL) ---- */
   #about {
-    background: var(--bg); 
+    background: var(--surface);
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
   }
 
   .about-grid {
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 6rem;
+    grid-template-columns: 1.1fr 0.9fr; /* Ճիշտ նույն հարաբերությունը */
+    gap: 5rem;
     align-items: center;
-    max-width: 1200px;
+    max-width: 1250px;
     margin: 0 auto;
   }
 
@@ -357,7 +294,7 @@
   .skill-tag:hover {
     border-color: var(--accent);
     color: var(--accent3);
-    background: var(--surface);
+    background: var(--bg);
   }
 
   .stats-grid {
@@ -369,17 +306,15 @@
   .stat-card {
     background: var(--surface2);
     border: 1px solid var(--border);
-    border-top: 3px solid var(--accent3); 
+    border-top: 3px solid var(--accent3);
     border-radius: 6px;
     padding: 2.5rem 2rem;
-    text-align: left; 
+    text-align: left;
     box-shadow: 0 10px 30px rgba(0,0,0,0.02);
     transition: transform 0.3s;
   }
 
-  .stat-card:hover {
-    transform: translateY(-5px);
-  }
+  .stat-card:hover { transform: translateY(-5px); }
 
   .stat-num {
     font-family: 'DM Serif Display', serif;
@@ -389,141 +324,125 @@
     margin-bottom: 0.5rem;
   }
 
-  .stat-label {
-    font-size: 12px;
-    color: var(--muted);
-    letter-spacing: 0.05em;
+  .stat-label { font-size: 12px; color: var(--muted); letter-spacing: 0.05em; }
+
+
+  /* ---- PROJECTS SECTION (NEW PERFECT SYMMETRY) ---- */
+  #projects {
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
   }
 
-  /* ---- PROJECTS ---- */
-  #projects {
-    max-width: 1200px;
+  .projects-container {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr; /* Իդեալական սիմետրիա About-ի հետ */
+    gap: 5rem;
+    align-items: start;
+    max-width: 1250px;
     margin: 0 auto;
   }
 
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+  .projects-text {
+    position: sticky;
+    top: 120px; /* Էկրանը սքրոլ անելիս վերնագիրը սիրուն կանգնում է տեղում */
   }
 
-  .project-card {
+  .projects-intro {
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.85;
+    margin-bottom: 1.5rem;
+  }
+
+  .projects-subintro {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    opacity: 0.8;
+  }
+
+  /* Կոկիկ 2-սյունակ ցանց աջ կողմում */
+  .projects-showcase-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  /* Փոքրացված, շատ նուրբ քարտեր */
+  .project-card-small {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 2rem;
+    border-radius: 8px;
+    padding: 1.75rem 1.5rem;
     text-decoration: none;
     color: var(--text);
     display: flex;
     flex-direction: column;
-    position: relative;
-    transition: all 0.3s;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    justify-content: space-between;
+    min-height: 240px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.01);
   }
 
-  .project-card:hover {
+  .project-card-small:hover {
     border-color: var(--accent);
     transform: translateY(-5px);
-    box-shadow: 0 15px 35px var(--glow);
+    box-shadow: 0 12px 25px var(--glow);
   }
 
-  .project-type {
+  .project-card-small .project-type {
     font-family: 'DM Mono', monospace;
-    font-size: 10px;
+    font-size: 9px;
     color: var(--accent3);
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
   }
 
-  .project-title {
+  .project-card-small .project-title {
     font-family: 'DM Serif Display', serif;
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
-    line-height: 1.25;
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+    color: var(--text);
   }
 
-  .project-desc {
-    font-size: 0.95rem;
+  .project-card-small .project-desc {
+    font-size: 0.88rem;
     color: var(--muted);
-    line-height: 1.7;
-    margin-bottom: 2rem;
-    flex: 1;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
   }
 
-  .project-footer {
+  .project-card-small .project-footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 1.25rem;
+    padding-top: 1rem;
     border-top: 1px solid var(--border);
     margin-top: auto;
   }
 
-  .project-lang {
+  .project-card-small .project-lang {
     display: flex;
     align-items: center;
     gap: 6px;
     font-family: 'DM Mono', monospace;
-    font-size: 11px;
+    font-size: 10px;
     color: var(--muted);
   }
 
-  .lang-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-  }
-
-  .lang-python { background: #3572a5; }
-  .lang-jupyter { background: #da5b0b; }
-  .lang-other { background: #DDA22A; }
-
-  .project-arrow {
+  .project-card-small .project-arrow {
     color: var(--accent);
-    font-size: 18px;
-    opacity: 0;
-    transform: translateX(-8px);
-    transition: all 0.3s;
+    font-size: 16px;
+    transition: transform 0.2s;
   }
 
-  .project-card:hover .project-arrow {
-    opacity: 1;
-    transform: translateX(0);
+  .project-card-small:hover .project-arrow {
+    transform: translateX(3px);
   }
 
-  /* Featured spans full width */
-  .project-card.featured {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-    padding: 3rem;
-    flex-direction: unset;
-    background: linear-gradient(145deg, var(--surface), var(--surface2));
-  }
-
-  .project-card.featured .project-content {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-
-  .project-card.featured .project-title { font-size: 2rem; }
-  .project-card.featured .project-desc { flex: unset; font-size: 1.05rem; }
-
-  .featured-visual {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    min-height: 250px;
-    background: var(--bg);
-    border-radius: 12px;
-    border: 1px solid var(--border);
-    position: relative;
-    overflow: hidden;
-  }
 
   /* ---- CONTACT ---- */
   #contact {
@@ -587,16 +506,15 @@
 
   /* Responsiveness */
   @media (max-width: 1024px) {
-    .projects-grid { grid-template-columns: repeat(2, 1fr); }
-    .hero-container { gap: 2rem; }
+    .about-grid, .projects-container { gap: 3rem; }
   }
 
   @media (max-width: 850px) {
-    .hero-container {
+    .hero-container, .about-grid, .projects-container {
       grid-template-columns: 1fr;
       text-align: center;
     }
-    .hero-content { margin: 0 auto; }
+    .hero-content, .projects-text { margin: 0 auto; }
     .hero-tag { justify-content: center; }
     .hero-tag::before { display: none; }
     .hero-cta { justify-content: center; }
@@ -605,7 +523,10 @@
         grid-row: 1; 
         margin-bottom: 1rem;
     }
-    .hero-image { max-width: 400px; transform: scale(1); margin-top: 1rem; }
+    .hero-image { max-width: 320px; transform: scale(1); }
+    
+    .projects-text { position: static; margin-bottom: 3rem; }
+    .projects-showcase-grid { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 768px) {
@@ -613,9 +534,6 @@
     .nav-links { display: none; }
     .hero { padding: 8rem 1.5rem 5rem; }
     section { padding: 4rem 1.5rem; }
-    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-    .projects-grid { grid-template-columns: 1fr; }
-    .project-card.featured { grid-column: auto; grid-template-columns: 1fr; gap: 2rem; padding: 2rem; }
     footer { flex-direction: column; gap: 1rem; text-align: center; padding: 1.5rem; }
   }
 </style>
@@ -631,6 +549,7 @@
   </ul>
 </nav>
 
+<!-- 1-ԻՆ ԷՋ: HERO -->
 <section class="hero" id="home">
   <div class="hero-bg">
     <div class="hero-orb hero-orb-1"></div>
@@ -655,7 +574,6 @@
     <div class="hero-image-wrapper">
       <img src="sonamans.png" alt="Sona Mansuryan" class="hero-image">
     </div>
-
   </div>
 
   <div class="scroll-indicator">
@@ -664,13 +582,14 @@
   </div>
 </section>
 
+<!-- 2-ՐԴ ԷՋ: ABOUT -->
 <section id="about">
-  <div class="section-label">About</div>
   <div class="about-grid">
     <div class="about-text reveal">
+      <div class="section-label">About</div>
       <h2 class="section-title">Passionate about<br><em style="font-family:'DM Serif Display',serif; color:var(--accent3); font-style:italic;">intelligent systems</em></h2>
       
-      <p>I'm a researcher and developer focused on the intersection of <strong>machine learning theory</strong> and practical applications. My work spans generative models, reinforcement learning, and NLP fields where algorithms begin to exhibit truly fascinating emergent behavior.</p>
+      <p>I'm a researcher and developer focused on the intersection of <strong>machine learning theory</strong> and practical applications. My work spans generative models, reinforcement learning, and NLP — fields where algorithms begin to exhibit truly fascinating emergent behavior.</p>
       
       <p>From implementing classic <strong>algorithm theory</strong> to training <strong>CycleGANs</strong> that transform photographs into Van Gogh paintings, I pursue projects that push my understanding of what neural networks can accomplish.</p>
       
@@ -710,129 +629,116 @@
   </div>
 </section>
 
+<!-- 3-ՐԴ ԷՋ: PROJECTS (ՍԻՄԵՏՐԻԿ ՈՒ ԿՈԿԻԿ ԴԱՍԱՎՈՐՎԱԾՈՒԹՅԱՄԲ) -->
 <section id="projects">
-  <div class="section-label">Projects</div>
-  <h2 class="section-title">Selected Work</h2>
-
-  <div class="projects-grid">
-
-    <a href="https://github.com/sonamansuryan/armenian-voice-ai-support-agent" target="_blank" class="project-card featured reveal">
-      <div class="project-content">
-        <div class="project-type">Voice AI · NLP · Featured</div>
-        <h3 class="project-title">Armenian Voice AI Support Agent</h3>
-        <p class="project-desc">An AI-powered customer support agent with Armenian language voice capabilities — bridging speech recognition, NLP, and conversational AI for the Armenian language.</p>
+  <div class="projects-container">
+    
+    <!-- ՁԱԽ ԿՈՂՄԸ: ՎԵՐՆԱԳԻՐՆԵՐՆ ՈՒ ՆԿԱՐԱԳՐՈՒԹՅՈՒՆԸ -->
+    <div class="projects-text reveal">
+      <div class="section-label">Projects</div>
+      <h2 class="section-title">Selected Work</h2>
+      <p class="projects-intro">A curated showcase of my research and engineering projects across artificial intelligence, natural language processing, reinforcement learning, and computer vision.</p>
+      <p class="projects-subintro">Each card on the right represents a deep dive into neural architectures, from evolutionary algorithms to generative modeling.</p>
+    </div>
+    
+    <!-- ԱՋ ԿՈՂՄԸ: 2x3 ԿՈԿԻԿ ՑԱՆՑԸ -->
+    <div class="projects-showcase-grid reveal" style="transition-delay:0.15s">
+      
+      <!-- ՔԱՐՏ 1: Armenian Voice AI -->
+      <a href="https://github.com/sonamansuryan/armenian-voice-ai-support-agent" target="_blank" class="project-card-small">
+        <div>
+          <div class="project-type">Voice AI · NLP</div>
+          <h3 class="project-title">Armenian Voice AI</h3>
+          <p class="project-desc">AI customer support agent with Armenian voice capabilities — speech recognition and NLP.</p>
+        </div>
         <div class="project-footer">
           <div class="project-lang">
-            <span class="lang-dot lang-other"></span>
-            Python / Voice NLP
+            <span class="lang-dot lang-other"></span> Python
           </div>
           <span class="project-arrow">→</span>
         </div>
-      </div>
-      
-      <div class="featured-visual">
-        <svg width="200" height="140" viewBox="0 0 200 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="40" y="55" width="4" height="30" rx="2" fill="#DDA22A" opacity="0.6" />
-          <rect x="52" y="40" width="4" height="60" rx="2" fill="#B3801B" />
-          <rect x="64" y="25" width="4" height="90" rx="2" fill="#DDA22A" />
-          <rect x="76" y="45" width="4" height="50" rx="2" fill="#B3801B" />
-          <rect x="88" y="15" width="4" height="110" rx="2" fill="#DDA22A" />
-          <rect x="100" y="35" width="4" height="70" rx="2" fill="#B3801B" />
-          <rect x="112" y="10" width="4" height="120" rx="2" fill="#DDA22A" />
-          <rect x="124" y="45" width="4" height="50" rx="2" fill="#B3801B" />
-          <rect x="136" y="25" width="4" height="90" rx="2" fill="#DDA22A" />
-          <rect x="148" y="50" width="4" height="40" rx="2" fill="#B3801B" />
-          <rect x="160" y="60" width="4" height="20" rx="2" fill="#DDA22A" opacity="0.6" />
-          
-          <circle cx="20" cy="70" r="4" fill="#B3801B" opacity="0.5" />
-          <line x1="24" y1="70" x2="36" y2="70" stroke="#8A7B6E" stroke-dasharray="2 2" opacity="0.5" />
-          <circle cx="180" cy="70" r="4" fill="#DDA22A" opacity="0.5" />
-          <line x1="164" y1="70" x2="176" y2="70" stroke="#8A7B6E" stroke-dasharray="2 2" opacity="0.5" />
-        </svg>
-      </div>
-    </a>
+      </a>
 
-    <a href="https://github.com/sonamansuryan/CycleGAN-Photo2VanGogh" target="_blank" class="project-card reveal">
-      <div class="project-type">Generative AI</div>
-      <h3 class="project-title">CycleGAN Photo → Van Gogh</h3>
-      <p class="project-desc">An implementation of CycleGAN for unpaired image-to-image translation — transforming ordinary photographs into Van Gogh-style paintings.</p>
-      <div class="project-footer">
-        <div class="project-lang">
-          <span class="lang-dot lang-python"></span>
-          Python
+      <!-- ՔԱՐՏ 2: CycleGAN -->
+      <a href="https://github.com/sonamansuryan/CycleGAN-Photo2VanGogh" target="_blank" class="project-card-small">
+        <div>
+          <div class="project-type">Generative AI</div>
+          <h3 class="project-title">CycleGAN</h3>
+          <p class="project-desc">Unpaired image-to-image translation turning photos into Van Gogh-style paintings.</p>
         </div>
-        <span class="project-arrow">→</span>
-      </div>
-    </a>
-
-    <a href="https://github.com/sonamansuryan/neat-dino" target="_blank" class="project-card reveal" style="transition-delay:0.05s">
-      <div class="project-type">Neuroevolution · AI</div>
-      <h3 class="project-title">NEAT Chrome Dino Game</h3>
-      <p class="project-desc">Training an AI agent to master the classic Chrome Dinosaur game using the Neuroevolution of Augmenting Topologies (NEAT) genetic algorithm.</p>
-      <div class="project-footer">
-        <div class="project-lang">
-          <span class="lang-dot lang-python"></span>
-          Python
+        <div class="project-footer">
+          <div class="project-lang">
+            <span class="lang-dot lang-python"></span> Python
+          </div>
+          <span class="project-arrow">→</span>
         </div>
-        <span class="project-arrow">→</span>
-      </div>
-    </a>
+      </a>
 
-    <a href="https://github.com/sonamansuryan/Reinforcement-Learning" target="_blank" class="project-card reveal" style="transition-delay:0.1s">
-      <div class="project-type">Reinforcement Learning</div>
-      <h3 class="project-title">Reinforcement Learning</h3>
-      <p class="project-desc">A collection of RL algorithms (Q-Learning, Policy Gradients) and environment experiments implemented from scratch in Jupyter Notebooks.</p>
-      <div class="project-footer">
-        <div class="project-lang">
-          <span class="lang-dot lang-jupyter"></span>
-          Jupyter Notebook
+      <!-- ՔԱՐՏ 3: NEAT Dino -->
+      <a href="https://github.com/sonamansuryan/neat-dino" target="_blank" class="project-card-small">
+        <div>
+          <div class="project-type">Neuroevolution · AI</div>
+          <h3 class="project-title">NEAT Dino Game</h3>
+          <p class="project-desc">Training an AI agent to master Chrome's Dinosaur game using genetic algorithms (NEAT).</p>
         </div>
-        <span class="project-arrow">→</span>
-      </div>
-    </a>
-
-    <a href="https://github.com/sonamansuryan/FakeNewsDetectionSystems" target="_blank" class="project-card reveal">
-      <div class="project-type">NLP · Classification</div>
-      <h3 class="project-title">Fake News Detection Systems</h3>
-      <p class="project-desc">ML-powered text classification system utilizing advanced NLP techniques to identify misinformation and analyze article credibility at scale.</p>
-      <div class="project-footer">
-        <div class="project-lang">
-          <span class="lang-dot lang-python"></span>
-          Python
+        <div class="project-footer">
+          <div class="project-lang">
+            <span class="lang-dot lang-python"></span> Python
+          </div>
+          <span class="project-arrow">→</span>
         </div>
-        <span class="project-arrow">→</span>
-      </div>
-    </a>
+      </a>
 
-    <a href="https://github.com/sonamansuryan/plant-disease-classifier" target="_blank" class="project-card reveal" style="transition-delay:0.05s">
-      <div class="project-type">Computer Vision</div>
-      <h3 class="project-title">Plant Disease Classifier</h3>
-      <p class="project-desc">Deep learning model built with Convolutional Neural Networks (CNNs) to detect and classify crop diseases from leaf imagery for precision agriculture.</p>
-      <div class="project-footer">
-        <div class="project-lang">
-          <span class="lang-dot lang-python"></span>
-          Python
+      <!-- ՔԱՐՏ 4: Reinforcement Learning -->
+      <a href="https://github.com/sonamansuryan/Reinforcement-Learning" target="_blank" class="project-card-small">
+        <div>
+          <div class="project-type">Reinforcement Learning</div>
+          <h3 class="project-title">RL Experiments</h3>
+          <p class="project-desc">Algorithms (Q-Learning, Policy Gradients) implemented from scratch in Jupyter.</p>
         </div>
-        <span class="project-arrow">→</span>
-      </div>
-    </a>
-
-    <a href="https://github.com/sonamansuryan/text-to-image-engine" target="_blank" class="project-card reveal" style="transition-delay:0.1s">
-      <div class="project-type">Generative AI</div>
-      <h3 class="project-title">Text-to-Image Engine</h3>
-      <p class="project-desc">A text-to-image generation engine exploring modern diffusion architectures and models to convert text prompts into detailed visuals.</p>
-      <div class="project-footer">
-        <div class="project-lang">
-          <span class="lang-dot lang-python"></span>
-          Python
+        <div class="project-footer">
+          <div class="project-lang">
+            <span class="lang-dot lang-jupyter"></span> Jupyter
+          </div>
+          <span class="project-arrow">→</span>
         </div>
-        <span class="project-arrow">→</span>
-      </div>
-    </a>
+      </a>
 
+      <!-- ՔԱՐՏ 5: Fake News Detection -->
+      <a href="https://github.com/sonamansuryan/FakeNewsDetectionSystems" target="_blank" class="project-card-small">
+        <div>
+          <div class="project-type">NLP · Classifier</div>
+          <h3 class="project-title">Fake News Detection</h3>
+          <p class="project-desc">ML classifier using advanced NLP to identify online misinformation at scale.</p>
+        </div>
+        <div class="project-footer">
+          <div class="project-lang">
+            <span class="lang-dot lang-python"></span> Python
+          </div>
+          <span class="project-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- ՔԱՐՏ 6: Plant Disease Classifier -->
+      <a href="https://github.com/sonamansuryan/plant-disease-classifier" target="_blank" class="project-card-small">
+        <div>
+          <div class="project-type">Computer Vision</div>
+          <h3 class="project-title">Plant Classifier</h3>
+          <p class="project-desc">CNN deep learning model to detect crop diseases from leaf imagery.</p>
+        </div>
+        <div class="project-footer">
+          <div class="project-lang">
+            <span class="lang-dot lang-python"></span> Python
+          </div>
+          <span class="project-arrow">→</span>
+        </div>
+      </a>
+
+    </div>
   </div>
 </section>
 
+<!-- 4-ՐԴ ԷՋ: CONTACT -->
 <section id="contact">
   <div class="section-label">Contact</div>
   <h2 class="section-title reveal" style="font-family:'DM Serif Display',serif; font-size:clamp(2rem,4vw,3rem); letter-spacing:-0.02em; margin-bottom:1rem;">Let's connect</h2>
@@ -842,7 +748,7 @@
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
       GitHub
     </a>
-    <a href="mailto:mansuruansona04@gmail.com" class="btn btn-ghost">Email Me</a>
+    <a href="mailto:mansuryansona04@gmail.com" class="btn btn-ghost">Email Me</a>
   </div>
 </section>
 
