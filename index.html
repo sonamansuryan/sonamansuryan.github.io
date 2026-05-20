@@ -161,99 +161,38 @@
     position: relative;
     z-index: 1;
     display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 4rem;
+    grid-template-columns: 1fr 1fr; 
+    gap: 2rem;
     align-items: center;
     width: 100%;
-    max-width: 1100px;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
-  .hero-content {
-    max-width: 600px;
-  }
-
-  .hero-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--accent3);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 2rem;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.2s forwards;
-  }
-
-  .hero-tag::before {
-    content: '';
-    width: 20px; height: 1px;
-    background: var(--accent3);
-    opacity: 0.6;
-  }
-
-  .hero-name {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(3rem, 6vw, 5rem);
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    margin-bottom: 1.5rem;
-    color: var(--text);
-    opacity: 0;
-    animation: fadeUp 0.8s 0.4s forwards;
-  }
-
-  .hero-name em {
-    font-style: italic;
-    color: var(--accent);
-  }
-
-  .hero-desc {
-    font-size: 1.1rem;
-    color: var(--muted);
-    line-height: 1.8;
-    margin-bottom: 3rem;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.6s forwards;
-  }
-
-  .hero-cta {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.8s forwards;
-  }
-
-  /* IMAGE STYLING */
-  .hero-image-wrapper {
-    position: relative;
+  .hero-image-box {
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: 0;
-    animation: fadeIn 1.2s 1s forwards;
+    position: relative;
   }
 
-  .hero-image {
+  .hero-profile-img {
     width: 100%;
-    max-width: 380px;
-    aspect-ratio: 4/5;
+    max-width: 420px; 
+    aspect-ratio: 1 / 1;
     object-fit: cover;
-    /* Organic Blob Shape */
-    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-    box-shadow: 0 20px 50px var(--glow);
-    border: 6px solid var(--surface);
+    border: 8px solid var(--surface);
     outline: 2px solid var(--accent);
     outline-offset: 4px;
-    animation: morph 8s ease-in-out infinite;
+    box-shadow: 0 20px 50px var(--glow);
+    /* Գեղեցիկ «լողացող» ձևը */
+    animation: morphing 10s ease-in-out infinite;
+    z-index: 5;
   }
 
-  @keyframes morph {
-    0%, 100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
-    34% { border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; }
-    67% { border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%; }
+  @keyframes morphing {
+    0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+    50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
   }
 
   .btn {
@@ -703,10 +642,9 @@
       </div>
     </div>
     
-  <div class="hero-image-container reveal">
-    <img src="sonamans.png" alt="Sona Mansuryan" class="hero-profile-img">
-  </div>
-
+    <div class="hero-image-box reveal">
+      <img src="sonamans.png" alt="Sona Mansuryan" class="hero-profile-img">
+    </div>
   </div>
 
   <div class="scroll-indicator">
