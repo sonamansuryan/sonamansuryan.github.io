@@ -309,23 +309,23 @@
   }
 
   #about {
-    background: var(--surface);
+    background: var(--bg); 
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
   }
 
   .about-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: start;
-    max-width: 1100px;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 6rem;
+    align-items: center;
+    max-width: 1200px;
     margin: 0 auto;
   }
 
   .about-text p {
     color: var(--muted);
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
     font-size: 1.05rem;
     line-height: 1.85;
   }
@@ -345,11 +345,11 @@
   .skill-tag {
     font-family: 'DM Mono', monospace;
     font-size: 11px;
-    padding: 6px 14px;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    color: var(--text);
+    padding: 8px 16px;
+    background: transparent;
+    border: 1px solid var(--border2);
+    border-radius: 4px;
+    color: var(--muted);
     letter-spacing: 0.05em;
     transition: all 0.2s;
   }
@@ -357,7 +357,7 @@
   .skill-tag:hover {
     border-color: var(--accent);
     color: var(--accent3);
-    background: var(--surface2);
+    background: var(--surface);
   }
 
   .stats-grid {
@@ -367,25 +367,30 @@
   }
 
   .stat-card {
-    background: var(--bg);
+    background: var(--surface2);
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 2rem 1.5rem;
-    position: relative;
-    overflow: hidden;
-    text-align: center;
+    border-top: 3px solid var(--accent3); 
+    border-radius: 6px;
+    padding: 2.5rem 2rem;
+    text-align: left; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+    transition: transform 0.3s;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-5px);
   }
 
   .stat-num {
     font-family: 'DM Serif Display', serif;
-    font-size: 3rem;
-    color: var(--accent);
+    font-size: 3.5rem;
+    color: var(--accent3);
     line-height: 1;
-    margin-bottom: 10px;
+    margin-bottom: 0.5rem;
   }
 
   .stat-label {
-    font-size: 13px;
+    font-size: 12px;
     color: var(--muted);
     letter-spacing: 0.05em;
   }
@@ -663,10 +668,14 @@
   <div class="section-label">About</div>
   <div class="about-grid">
     <div class="about-text reveal">
-      <h2 class="section-title">Passionate about<br><em style="font-family:'DM Serif Display',serif; color:var(--accent); font-style:italic;">intelligent systems</em></h2>
-      <p>I'm a researcher and developer focused on the intersection of <strong>machine learning theory</strong> and practical applications. My work spans generative models, reinforcement learning, and NLP — fields where algorithms begin to exhibit truly fascinating emergent behavior.</p>
-      <p>From building <strong>fake news detection systems</strong> to training <strong>CycleGANs</strong> that transform photographs into Van Gogh paintings, I pursue projects that push my understanding of what neural networks can accomplish.</p>
-      <p>Currently deepening my expertise in <strong>generative AI</strong> and exploring how large language models reshape our interaction with software — including Armenian-language voice AI.</p>
+      <h2 class="section-title">Passionate about<br><em style="font-family:'DM Serif Display',serif; color:var(--accent3); font-style:italic;">intelligent systems</em></h2>
+      
+      <p>I'm a researcher and developer focused on the intersection of <strong>machine learning theory</strong> and practical applications. My work spans generative models, reinforcement learning, and NLP fields where algorithms begin to exhibit truly fascinating emergent behavior.</p>
+      
+      <p>From implementing classic <strong>algorithm theory</strong> to training <strong>CycleGANs</strong> that transform photographs into Van Gogh paintings, I pursue projects that push my understanding of what neural networks can accomplish.</p>
+      
+      <p>Currently deepening my expertise in <strong>generative AI</strong> and exploring how large language models reshape our interaction with software.</p>
+      
       <div class="skills-grid">
         <span class="skill-tag">Python</span>
         <span class="skill-tag">PyTorch</span>
@@ -675,10 +684,11 @@
         <span class="skill-tag">Generative AI</span>
         <span class="skill-tag">NLP</span>
         <span class="skill-tag">GANs</span>
-        <span class="skill-tag">Computer Vision</span>
-        <span class="skill-tag">Voice AI</span>
+        <span class="skill-tag">Jupyter</span>
+        <span class="skill-tag">Algorithm Design</span>
       </div>
     </div>
+    
     <div class="stats-grid reveal" style="transition-delay:0.15s">
       <div class="stat-card">
         <div class="stat-num">6+</div>
